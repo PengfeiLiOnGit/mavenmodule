@@ -8,15 +8,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("s1")
-public class SysUserImpl implements ISysUser {
-
+@Service("s2")
+public class SysUserImpl2 implements ISysUser {
     @Autowired
     protected SysUserMapper mapper;
 
+    @Override
     public List<SysUser> selectAll() {
-        System.out.println("this is 1");
-
+        System.out.println("this is 2");
         return mapper.selectAll();
     }
 }

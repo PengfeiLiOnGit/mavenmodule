@@ -2,6 +2,7 @@ package com.jony.service.sys;
 
 import com.jony.dao.sys.entity.SysUser;
 import com.jony.service.sys.impl.SysUserImpl;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,18 +10,19 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(value = {"classpath*:applicationContext*.xml"})
 @Rollback(true)
 public class SysUserTest {
-    @Autowired
-    private SysUserImpl sysUser;
+    @Resource(name = "s1")
+    private ISysUser sysUser;
 
     @Test
     public void doSomething(){
         List<SysUser> users = sysUser.selectAll();
-
+        Assert.assertNotNull(users);
     }
 }
