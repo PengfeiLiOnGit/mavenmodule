@@ -9,7 +9,7 @@
     <!--    启动controller 注解支持-->
     <mvc:annotation-driven/>
     <!-- 简单的静态资源映射-->
-    <mvc:resources location="static/" mapping=""/>
+    <mvc:resources location="static/" mapping="/static/**"/>
     <mvc:resources location="/WEB-INF/html/" mapping="/html/*.html" />
     <!--    配置扫描的controller-->
     <context:component-scan base-package="com.jony.web"/>
