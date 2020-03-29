@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:tx="http://www.springframework.org/schema/tx"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns="http://www.springframework.org/schema/beans"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--        扫描注入的bean包-->
+<!--    <context:component-scan base-package="com.jony.*.service.impl"/>-->
+    <!--    扫描mapper接口 注入配置扫描的bean-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.jony.dao.**.mapper"/>
+    </bean>
+
+    <!--  注入sqlSessionFactoryBean  -->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--        加载mybatis的资源文件-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!--        数据源-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--    映射的文件    -->
+        <property name="mapperLocations">
+            <array>
+                <value>classpath:com/jony/dao/**/mapper/*.xml</value>
+            </array>
+        </property>
+    </bean>
+    <!--    定义数据源-->
+    <bean id="dataSource" class="org.apache.ibatis.datasource.pooled.PooledDataSource">
+        <property name="driver" value="oracle.jdbc.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:credit"/>
+        <property name="username" value="batis"/>
+        <property name="password" value="1234"/>
+    </bean>
+</beans>
