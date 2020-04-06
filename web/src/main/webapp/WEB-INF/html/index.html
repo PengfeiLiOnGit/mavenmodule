@@ -4,8 +4,29 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.js"></script>
 <body>
     this is index
-    <img src="/static/">
+
+<script type="text/javascript">
+<!--    iife-->
+    (function(){
+        let client = Stomp.client("ws://localhost:61614");
+        let onConnect = function(){
+        //    订阅消息
+            client.subscribe("/topic/shopping-discount",function(msg){
+            //    弹出业务消息提醒
+                console.log(msg)
+            });
+        }
+        let onError = function (msg) {
+            console.log("error:>>",msg);
+        }
+    //    连接服务器
+        client.connect("guest","guest",onConnect,onError());
+        client.heartbeat.incoming = 5000;
+        client.heartbeat.outgoing = 5000;
+    })();
+</script>
 </body>
 </html>
