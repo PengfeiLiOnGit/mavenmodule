@@ -21,7 +21,7 @@
     <!--  设置properties变量  -->
     <properties>
         <spring.version>5.2.4.RELEASE</spring.version>
-        <junit>4.13</junit>
+        <junit>4.13.1</junit>
         <project.build.sourceEncoding>
             UTF-8
         </project.build.sourceEncoding>
